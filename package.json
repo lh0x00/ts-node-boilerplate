@@ -1,0 +1,44 @@
+{
+  "name": "ts-node-boilerplate",
+  "description": "a simple template and easy to start to build a Node project using Typescript and Jest",
+  "version": "0.0.1",
+  "main": "build/server.js",
+  "types": "build/server.d.ts",
+  "private": false,
+  "license": "MIT",
+  "author": {
+    "email": "lamhieu.vk@gmail.com",
+    "name": "Hieu Lam",
+    "url": "https://lamhieu.info"
+  },
+  "scripts": {
+    "lint": "tslint --config tslint.json '**/*.ts{,x}' --exclude '**/+(build|node_modules|coverage)/**'",
+    "lint:fix": "yarn lint --fix",
+    "clean": "rimraf ./build ./coverage",
+    "dev": "nodemon",
+    "build": "tsc -p tsconfig.json",
+    "start": "pm2-runtime start ecosystem.config.js --env production",
+    "test": "jest",
+    "test:coverage": "jest --coverage",
+    "precommit": "yarn lint:fix && yarn test",
+    "prepush": "yarn precommit && yarn clean && yarn build",
+    "serve": "yarn clean && yarn build && yarn start"
+  },
+  "devDependencies": {
+    "@types/dotenv": "^6.1.1",
+    "@types/jest": "^24.0.15",
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1",
+    "pm2": "^3.5.1",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^24.0.2",
+    "ts-node": "^8.3.0",
+    "tsconfig-paths": "^3.8.0",
+    "tslint": "^5.18.0",
+    "typescript": "^3.5.3"
+  },
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "tslib": "^1.10.0"
+  }
+}
